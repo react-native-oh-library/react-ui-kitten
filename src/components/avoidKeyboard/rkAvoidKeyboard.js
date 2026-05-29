@@ -3,7 +3,7 @@ import {
   Animated,
   Platform,
   Keyboard
-} from 'react-native-web';
+} from 'react-native';
 import {RkComponent} from '../rkComponent';
 
 /**
@@ -36,14 +36,14 @@ export class RkAvoidKeyboard extends RkComponent {
     this.onKeyboardWillHide = this._onKeyboardWillHide.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     if (Platform.OS === 'ios') {
       this.keyboardWillShowListner = Keyboard.addListener('keyboardWillShow', this.onKeyboardWillShow);
       this.keyboardWillHideListner = Keyboard.addListener('keyboardWillHide', this.onKeyboardWillHide);
     }
   }
 
-  componentWillUnmount() {
+  UNSAFE_componentWillUnmount() {
     if (Platform.OS === 'ios') {
       this.keyboardWillShowListner.remove();
       this.keyboardWillHideListner.remove();

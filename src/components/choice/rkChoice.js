@@ -3,7 +3,7 @@ import {
   TouchableOpacity,
   View,
   Image
-} from 'react-native-web';
+} from 'react-native';
 import _ from 'lodash';
 import {RkComponent} from '../rkComponent';
 
@@ -37,16 +37,13 @@ import {RkComponent} from '../rkComponent';
  * - `Unselected` (base)
  * - `Selected`
  * - `Unselected and disabled`
- * - `Selected and disabled`.
- *
- * Each of this states can be configured using `rkTypes`. That means you can define set of correctly named `RkTypes`
+ * - `Selected and disabled`. Each of this states can be configured using `rkTypes`. That means you can define set of correctly named `RkTypes`
  * and `RkChoice` will apply them according to its state.
  * Use the following convention:
  * - `yourRkType` - Unselected state.
  * - `yourRkTypeSelected` - Selected state.
  * - `yourRkTypeDisabled` - Unselected & disabled state.
  * - `yourRkTypeSelectedDisabled` - Selected & disabled state.
- *
  * You can define just part of this types if you don't need to customize some of them. For example you can create 'myType' and 'myTypeSelected' `rkTypes` and not to define another two types. Those 2 state will be rendered by default (or in according to other RkTypes in your component)
  * Note: during state change `RkChoice` doesn't replace base `rkType` with new state-based ones.
  *
@@ -114,7 +111,7 @@ import {RkComponent} from '../rkComponent';
  * but the framework will be no longer control and apply rkTypes styling to your own rendered content.
  * (But for 'container' rkTypes still will be applied).
  * This function takes the following argument: `{isDisabled: bool, isSelected: bool, rkStyle: object}`. Pay attention to 'rkStyle'.
- * Although the framework does not apply styles to custom rendered content it calculates style from rkTypes. It is passed to the 'rkStyle' argument and you can apply this style by yourself.
+ * Although the framework doesn't apply styles to your rendered content it calculates style from your rkTypes for you and passes it in that 'rkStyle' argument. You can apply this style yourself if you wish.
  *
  * ```
  * <RkChoice selected style={{backgroundColor: 'transparent', borderWidth:0}} renderContentFunction={(args) => this._renderCustomContent(args)}/>
@@ -150,7 +147,7 @@ import {RkComponent} from '../rkComponent';
  * @property {string} rkType - Types for component stylization. By default `RkChoice` supports following types: `clear`, `radio`, `posNeg`. (And `checkbox` style by default if there is no types specified explicitly).
  * @property {bool} selected - Determines whether component is checked
  * @property {bool} disabled - Determines whether component is disabled
- * @property {function} onChange - Triggered on change value
+ * @property {function} onPress - Triggered on press
  * @property {function} renderContentFunction - Function to rendering your own content
  * @property {style} style - Style for `container` component
  * @property {style} contentStyle - Style for `inner` component
@@ -173,7 +170,7 @@ export class RkChoice extends RkComponent {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.selected !== this.state.selected) {
       this.setState({selected: nextProps.selected});
     }

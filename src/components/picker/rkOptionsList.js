@@ -4,10 +4,10 @@ import {
   TouchableHighlight,
   Modal,
   View,
-  ListView,
-  DataSource,
+  // 1. 移除 ListView/DataSource，新增 FlatList
+  FlatList,
   InteractionManager
-} from 'react-native-web';
+} from 'react-native';
 import {RkOption} from './rkOption';
 import {RkComponent} from '../rkComponent';
 
@@ -16,15 +16,17 @@ export class RkOptionsList extends RkComponent {
 
   constructor(props) {
     super(props);
-    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true});
+    // 2. 移除 ListView.DataSource 实例化（FlatList 不需要）
+    // let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => true});
     this.optionHeight = this.props.optionHeight || 30;
     this.optionNumberOnPicker = this.props.optionNumberOnPicker || 3;
     this.pickerHeight = this.optionNumberOnPicker * this.optionHeight;
     this.optionsData = this.updateOptionsData(this.props.data, this.optionNumberOnPicker);
     this.state = {
-      dataSource: ds.cloneWithRows(this.optionsData),
+      // 3. 移除 dataSource/ds 状态，保留原有核心状态
+      // dataSource: ds.cloneWithRows(this.optionsData),
       selectedOption: this.props.selectedOption,
-      ds: ds,
+      // ds: ds,
     };
   }
 
@@ -98,7 +100,11 @@ export class RkOptionsList extends RkComponent {
   }
 
   scrollToIndex(index) {
-    this.listRef.scrollTo({x: 0, y: index * this.optionHeight, animated: true})
+    // 4. FlatList 的 scrollTo 方法参数与 ListView 兼容，无需修改
+     this.listRef.scrollToOffset({
+    offset: index * this.optionHeight,
+    animated: true
+  })
   }
 
   updateOptionsData(optionsData, optionNumberOnPicker) {
@@ -116,7 +122,8 @@ export class RkOptionsList extends RkComponent {
     let selectedIndex = Math.round(y / this.optionHeight);
     this.setState({
       selectedOption: this.props.data[selectedIndex],
-      dataSource: this.state.ds.cloneWithRows(this.optionsData),
+      // 5. 移除 dataSource 相关 setState
+      // dataSource: this.state.ds.cloneWithRows(this.optionsData),
     });
     this.scrollToIndex(selectedIndex);
     this.props.onSelect(this.props.data[selectedIndex], id);
@@ -142,7 +149,8 @@ export class RkOptionsList extends RkComponent {
     return (
       <View style={this.props.optionListContainerStyle}>
         <View style={[highlightVarStyle, this.props.highlightBlockStyle]}/>
-        <ListView
+        {/* 6. 替换 ListView 为 FlatList，映射原有属性 */}
+        <FlatList
           bounces={false}
           showsVerticalScrollIndicator={false}
           ref={(flatListRef) => this.listRef = flatListRef}
@@ -150,10 +158,17 @@ export class RkOptionsList extends RkComponent {
           onMomentumScrollEnd={(e) => this.onMomentumScrollEnd(e, this.props.id)}
           onScrollBeginDrag={(e) => this.onScrollBeginDrag()}
           onScrollEndDrag={(e) => this.onScrollEndDrag(e, this.props.id)}
-          dataSource={this.state.dataSource}
-          renderRow={(item, sectionID, rowId) => this.renderOption(item, this.props.optionBlockStyle)}
-          enableEmptySections={true}
-          initialListSize={this.optionsData.length}
+          // 核心映射：data 替代 dataSource，renderItem 替代 renderRow
+          data={this.optionsData}
+          renderItem={({item}) => this.renderOption(item, this.props.optionBlockStyle)}
+          // FlatList 必须配置 keyExtractor
+          keyExtractor={(item, index) => index.toString()}
+          // 兼容 ListView 的 enableEmptySections
+          ListEmptyComponent={<View />}
+          // 兼容 initialListSize
+          initialNumToRender={this.optionsData.length}
+          // 保证滚动事件触发频率与 ListView 一致
+          scrollEventThrottle={16}
         />
       </View>
     );

@@ -5,7 +5,7 @@ import {
   Modal,
   View,
   FlatList
-} from 'react-native-web';
+} from 'react-native';
 import {RkButton} from '../button/rkButton';
 import {RkText} from '../text/rkText';
 import {RkComponent} from '../rkComponent';
@@ -221,7 +221,7 @@ export class RkPicker extends RkComponent {
     return (
       <Modal
         visible={this.props.visible}
-        animationType={'fade'}
+        animationType={'slide'}
         transparent={true}
         onRequestClose={() => this.props.onCancel()}>
 

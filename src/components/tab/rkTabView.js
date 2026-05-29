@@ -3,7 +3,7 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-} from 'react-native-web';
+} from 'react-native';
 import _ from 'lodash';
 import {RkComponent} from '../rkComponent';
 import {RkTab} from './rkTab'

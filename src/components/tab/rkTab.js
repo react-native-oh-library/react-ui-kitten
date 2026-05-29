@@ -2,9 +2,11 @@ import React from 'react';
 
 import {
   View,
-} from 'react-native-web';
+} from 'react-native';
 
 export class RkTab extends React.Component {
+
+  static name = 'tab';
 
   constructor(props) {
     super(props);
