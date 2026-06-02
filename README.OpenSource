@@ -1,0 +1,11 @@
+[
+    {
+        "Name": "react-native-ui-kitten",
+        "License": "MIT License",
+        "License File": "https://github.com/wumke/react-native-ui-kitten/blob/master/LICENSE",
+        "Version Number": "2.0.0",
+        "Owner" : "xiafeng@huawei.com",
+        "Upstream URL": "https://github.com/wumke/react-native-ui-kitten",
+        "Description": "Exit,close,kill,shutdown app completely for React Native"
+    }
+]

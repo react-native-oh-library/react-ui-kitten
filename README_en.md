@@ -2,13 +2,10 @@
 
 # <center>react-native-ui-kitten</center>
 
-This project is based on [react-ui-kitten](https://github.com/react-native-oh-library/react-ui-kitten).
-
-This third-party library has been migrated to Gitcode and is now available for direct download from npm, the new package name is: `@react-native-ui-kitten`, The version correspondence details are as follows:
 
 | Name | Version | Release Information | Supported RN Version | Supported Autolink | Compile API Version | Community Baseline Version | npm Address     |
 | --------------| -------------- | ------------------------------ | ------------- | ------------- |------------------------ | ------------- | ------------- |
-| @react-native-ohos/react-native-ui-kitten |  ~ 1.0.0    |  | 0.61.* | No | API12+ | 7.3.4 | | 
+| react-native-ui-kitten |  ~ 1.0.0    |  | 0.61.* | No | API12+ | 3.0.1 | | 
 
 ## Introduction
 
@@ -22,13 +19,13 @@ Go to the project directory and execute the following instruction:
 **npm**
 
 ```bash
-npm install @react-native-ohos/react-native-ui-kitten
+npm install react-native-ui-kitten
 ```
 
 **yarn**
 
 ```bash
-yarn add @react-native-ohos/react-native-ui-kitten
+yarn add react-native-ui-kitten
 ```
 
 ## Link
@@ -115,26 +112,26 @@ export default KittenTest;
 
 > [!TIP] The **Platform** column indicates the platform where the properties are supported in the original third-party library.
 
-> [!TIP] If the value of **HarmonyOS Support** is **yes**, it means that the OpenHarmony platform supports this property; **no** means the opposite; **partially** means some capabilities of this property are supported. The usage method is the same on different platforms and the effect is the same as that of iOS or Android.
+> [!TIP] If the value of **HarmonyOS Platform Support** is **yes**, it means that the OpenHarmony platform supports this property; **no** means the opposite; **partially** means some capabilities of this property are supported. The usage method is the same on different platforms and the effect is the same as that of iOS or Android.
 
 ### Components
 
-| Name         | Parameter Type                 | Required  | Platform  | OpenHarmony Platform Support | Description          |
+| Name         | Parameter Type                 | Required  | Platform  | HarmonyOS Platform Support | Description          |
 |--------------|------------------------|------|------|--------------|----------------------|
-| RkText| [RkTextProps](#RkTextProps) | yes  | all  | yes                 | Text display component |
-| RkButton | [RkButtonProps](#RkButtonProps) | yes  | all  | yes                 | Button Component |
-| RkChoice | [RkChoiceProps](#RkChoiceProps) | yes  | all  | yes                 | Selector component, which is used to implement the selection function. Only one item can be selected at a time. |
-| RkChoiceGroup | [RkChoiceGroupProps](#RkChoiceGroupProps) | yes  | all  | yes                 |Selector component, selection group, management of selection components, and implementation of mutually exclusive single or multiple selection group management. |
-| RkTextInput| [RkTextInputProps](#RkTextInputProps) | yes  | all  | yes                 | Text box component, which supports form input, placeholder, keyboard type, theme style, and error status.|
-| RkModalImg| [RkModalImgProps](#RkModalImgProps) | yes  | all  | yes                 | Image preview pop-up window component. Users can click an image to zoom in or view it in full screen, and can also close the image and perform gesture operations.|
-| RkTabView | [RkTabViewProps](#RkTabViewProps) | yes  | all  | yes                 | The tab switching component is used to switch between tabs on the top or bottom and switch pages by swiping left or right. |
-| RkCard| [RkCardProps](#RkCardProps) | yes  | all  | yes                 | Card container component, used to display content blocks and supports layout styles such as shadows, rounded corners, margins, and titles. |
-| RkAvoidKeyboard| [RkAvoidKeyboardProps](#RkAvoidKeyboardProps) | yes  | all  | yes                 |Keyboard avoidance component, which automatically pushes the page upward when the keyboard pops up to prevent the input box from being obscured. |
-| RkComponent| [RkComponentProps](#RkComponentProps) | yes  | all  | yes                 |The base parent class of all UI Kitten components, providing common capabilities such as themes, styles, and types. |
-| RkPicker| [RkPickerProps](#RkPickerProps) | yes  | all  | yes                 | The scroll selector component is used to select a date, a single-choice list, or a drop-down list.|
-| withRkTheme| [withRkThemeProps](#withRkThemeProps) | yes  | all  | yes                 | High-Order Component (HOC), used to inject themes into custom components, enabling theme switching support for components |
-| RkTheme| [RkThemeProps](#RkThemeProps) | yes  | all  | yes                 | Core class for theme management, responsible for configuring, switching, and storing global themes (such as colors, fonts, and sizes). |
-| RkStyleSheet| [RkStyleSheetProps](#RkStyleSheetProps) | yes  | all  | yes                 | The theme-based style system is extended based on RN StyleSheet and supports dynamically generating styles based on themes.|
+| RkText| RkTextProps | yes  | all  | yes                 | Text display component |
+| RkButton | RkButtonProps | yes  | all  | yes                 | Button Component |
+| RkChoice | RkChoiceProps | yes  | all  | yes                 | Selector component, which is used to implement the selection function. Only one item can be selected at a time. |
+| RkChoiceGroup |RkChoiceGroupProps | yes  | all  | yes                 |Selector component, selection group, management of selection components, and implementation of mutually exclusive single or multiple selection group management. |
+| RkTextInput| RkTextInputProps | yes  | all  | yes                 | Text box component, which supports form input, placeholder, keyboard type, theme style, and error status.|
+| RkModalImg| RkModalImgProps | yes  | all  | yes                 | Image preview pop-up window component. Users can click an image to zoom in or view it in full screen, and can also close the image and perform gesture operations.|
+| RkTabView | RkTabViewProps | yes  | all  | yes                 | The tab switching component is used to switch between tabs on the top or bottom and switch pages by swiping left or right. |
+| RkCard| RkCardProps| yes  | all  | yes                 | Card container component, used to display content blocks and supports layout styles such as shadows, rounded corners, margins, and titles. |
+| RkAvoidKeyboard| RkAvoidKeyboardProps | yes  | all  | yes                 |Keyboard avoidance component, which automatically pushes the page upward when the keyboard pops up to prevent the input box from being obscured. |
+| RkComponent| RkComponentProps | yes  | all  | yes                 |The base parent class of all UI Kitten components, providing common capabilities such as themes, styles, and types. |
+| RkPicker| RkPickerProps | yes  | all  | yes                 | The scroll selector component is used to select a date, a single-choice list, or a drop-down list.|
+| withRkTheme| withRkThemeProps | yes  | all  | yes                 | High-Order Component (HOC), used to inject themes into custom components, enabling theme switching support for components |
+| RkTheme| RkThemeProps| yes  | all  | yes                 | Core class for theme management, responsible for configuring, switching, and storing global themes (such as colors, fonts, and sizes). |
+| RkStyleSheet| RkStyleSheetProps | yes  | all  | yes                 | The theme-based style system is extended based on RN StyleSheet and supports dynamically generating styles based on themes.|
 
 ## Known Issues
 
@@ -143,7 +140,7 @@ export default KittenTest;
 ## Directory Structure
 
 ````
-/rntpc_react-native-ui-kitten  # Project root directory
+/react-native-ui-kitten  # Project root directory
 ├── src                  # JS code
 │    └─ assets  # Resource management folder.
 │    └─ components # Component Package Export Folder
@@ -151,12 +148,11 @@ export default KittenTest;
 ├── README.md           # English Installation and Usage Guide
 ├── README_zh.md   # Installation and Usage Guide (Chinese)
 ````
+## Contribution code
 
-## How to Contribute
-
-If you find any problem when using lottie-react-native, submit an or a.
+Any issues found during use can be submitted as an [Issue](https://github.com/bullptr/react-ui-kitten/issues), and of course, [PR](https://github.com/bullptr/react-ui-kitten/pulls) submissions are also welcome.
 
 ## License
 
-The repository is based on [Apache License 2.0](https://github.com/lottie-react-native/lottie-react-native/blob/master/LICENSE).
+The repository is based on [Apache License 2.0](https://github.com/bullptr/react-ui-kitten).
 
