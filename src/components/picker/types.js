@@ -1,6 +1,6 @@
 import {
   StyleSheet,
-} from 'react-native-web';
+} from 'react-native';
 
 export const RkPickerTypes = (theme) => {
   return ({

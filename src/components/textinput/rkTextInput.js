@@ -3,7 +3,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-} from 'react-native-web';
+} from 'react-native';
 import {RkComponent} from '../rkComponent.js';
 
 /**
@@ -19,7 +19,7 @@ import {RkComponent} from '../rkComponent.js';
  *
  * @example Usage with icon or label
  *
- * `RkTextInput` can contain label or icon. By clicking on label/icon input will be focused.
+ * `RkTextInput` can contain label/icon. By clicking on label/icon input will be focused.
  *
  * ```
  * import Icon from 'react-native-vector-icons/Ionicons';
@@ -144,10 +144,15 @@ export class RkTextInput extends RkComponent {
   constructor(props) {
     super(props);
     this.focusInput = this._focusInput.bind(this);
+    // 🔥 修复点1：创建新的 ref 对象
+    this.inputRef = React.createRef();
   }
 
   _focusInput() {
-    this.refs.input.focus();
+    // 🔥 修复点2：使用新 ref 聚焦
+    if (this.inputRef.current) {
+      this.inputRef.current.focus();
+    }
   }
 
   _displayLabel(label, labelStyle) {
@@ -158,7 +163,7 @@ export class RkTextInput extends RkComponent {
     } else {
       return React.cloneElement(label, {
         onPress: (e) => {
-          this.refs.input.focus();
+          this.focusInput();
           label.props.onPress && label.props.onPress(e)
         },
         style: [labelStyle, label.props.style]
@@ -183,7 +188,8 @@ export class RkTextInput extends RkComponent {
     return (
       <TouchableOpacity activeOpacity={1} onPress={this.focusInput} style={boxStyle}>
         {label && this._displayLabel(label, labelStyle)}
-        <TextInput underlineColorAndroid='transparent' ref={'input'} {...inputProps}/>
+        {/* 🔥 修复点3：替换 string ref 为新 ref */}
+        <TextInput underlineColorAndroid='transparent' ref={this.inputRef} {...inputProps}/>
       </TouchableOpacity>
     );
   }

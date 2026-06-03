@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   View,
-} from 'react-native-web';
+} from 'react-native';
 import _ from 'lodash';
 import {RkChoice} from '../choice/rkChoice';
 import {RkComponent} from '../rkComponent';
@@ -120,7 +120,7 @@ export class RkChoiceGroup extends RkComponent {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     let index = 0;
     let process = (child) => {
       if (child.type === RkChoice && this.choice[index] === undefined) {

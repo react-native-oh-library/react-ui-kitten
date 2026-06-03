@@ -5,9 +5,7 @@ import {TypeManager} from './typeManager';
 import {RkStyleSheet} from './styleSheet'
 
 const themeUpdated = 'themeUpdated';
-/**
- * `RkTheme` object is entry point for all manipulations with customization.
- */
+
 class ThemeManager {
 
   constructor() {
@@ -49,72 +47,55 @@ class ThemeManager {
     return _.cloneDeep(DefaultTheme);
   }
 
-  /**
-   * {object} Returns current theme object.
-   */
   get current() {
     return this._currentTheme;
   }
 
-  /**
-   * {object} Returns auto styles. Deprecated.
-   */
   get styles() {
     return this._predefinedStyles;
   }
 
-  /**
-   * {object} Returns object contains material colors.
-   */
   get colors() {
     return this._colors;
   }
 
-  /**
-   * Updates current theme with new one. Note: function will always merge new theme with current.
-   * @param {object} theme - new theme.
-   */
+  // -------------------------
+  // 👇 修复完成版 setTheme
+  // -------------------------
   setTheme(theme) {
-    let baseTheme = this._getDefault();
+    // 1. 合并主题
+    let newTheme = _.merge(this._currentTheme, theme);
+    this._currentTheme = newTheme;
 
-    let newTheme = _.merge(baseTheme, theme);
-    _.merge(this._currentTheme, newTheme);
+    // 2. ✅【关键】更新颜色
+    if (theme.colors) {
+      _.merge(this._colors, theme.colors);
+      this._updatePredefinedStyles();
+    }
 
+    // 3. 刷新组件
     TypeManager.invalidateTypes();
     RkStyleSheet._invalidate();
 
-    this.listeners.forEach(t => t.forceUpdate());
+    this.listeners.forEach(t => {
+      try {
+        t.forceUpdate();
+      } catch (e) {}
+    });
   }
 
-  /**
-   * Creates new rkType for passed component.
-   * @param {string} element - component name for which new rkType should applied.
-   * @param {string} name - name of new rkType
-   * @param {object} value - style object for new rkType
-   */
   setType(element, name, value, parentTypes) {
     TypeManager.setType(element, name, value, parentTypes);
   }
 
-  /**
-   * Register component in theming system in order to predefine rkTypes.
-   * @param {string} element - element name which will be registered.
-   * @param {func} types - function which takes theme and returns object with themed rkTypes
-   */
   registerComponent(element, types) {
     TypeManager.registerTypes(element, types);
   }
 
-  /**
-   * Add new color to theme
-   * @param {string} name - name of new color
-   * @param {string} value - color value.
-   */
   setColor(name, value) {
     this._colors[name] = value;
     this._updatePredefinedStyles();
   }
 }
-
 
 export let RkTheme = new ThemeManager();

@@ -5,11 +5,12 @@ import {
   Image,
   Text,
   Modal,
+  ListView,
   Animated,
   Dimensions,
-  Platform,
-  FlatList
-} from 'react-native-web';
+  Platform
+} from 'react-native';
+import _ from 'lodash';
 import {RkButton} from '../button/rkButton';
 import {RkText} from '../text/rkText';
 import {RkComponent} from '../rkComponent';
@@ -150,6 +151,7 @@ export class RkModalImg extends RkComponent {
     modal: {}
   };
 
+  firstOrientationChange = true;
   needUpdateScroll = false;
 
   constructor(props) {
@@ -164,22 +166,35 @@ export class RkModalImg extends RkComponent {
   }
 
   componentDidUpdate() {
-    if (this.needUpdateScroll && this.refs.list) {
-      this.refs.list.scrollToOffset({offset: this.state.index * this.state.width, animated: false});
+    let updateScroll = () => {
+      this.refs.listView.scrollTo({x: this.state.index * this.state.width, animated: false});
       this.needUpdateScroll = false;
+    };
+    if (this.needUpdateScroll && this.refs.listView) {
+      if (Platform.OS === 'ios') {
+        updateScroll();
+      } else {
+        _.delay(updateScroll, 100);
+      }
     }
   }
 
   _renderList(source, index, props) {
-    return <FlatList
-      ref='list'
-      data={Array.from(this.props.source)}
-      renderItem={({item}) => this._renderImage(item, props)}
+    let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    return <ListView
+      ref='listView'
+      onScroll={(e) => this._onScroll(e)}
+      dataSource={ds.cloneWithRows(source.map((s) => {
+        return {img: s}
+      }))}
+      renderRow={(source) => this._renderImage(source.img, props)}
       horizontal
       pagingEnabled
-      keyExtractor={(item, index) => index}
-      extraData={this.state}
-      onScroll={(e) => this._onScroll(e)}
+      renderSeparator={() => null}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      directionalLockEnabled
+      scrollEventThrottle={100}
     />
   }
 
@@ -193,9 +208,9 @@ export class RkModalImg extends RkComponent {
   }
 
   _toggleControls() {
-      Animated.timing(this.state.opacity, {
-        toValue: this.state.opacity._value ? 0 : 1
-      }).start()
+    Animated.timing(this.state.opacity, {
+      toValue: this.state.opacity._value ? 0 : 1
+    }).start()
   }
 
   _renderFooter(options) {
@@ -247,12 +262,16 @@ export class RkModalImg extends RkComponent {
   }
 
   _closeImage() {
-    this.setState({visible: false});
+    this.setState({visible: false})
   }
 
   _onOrientationChange() {
+    if (!this.firstOrientationChange) {
       this.needUpdateScroll = true;
       this.forceUpdate();
+    } else {
+      this.firstOrientationChange = undefined;
+    }
   }
 
   _updateDimensionsState() {
@@ -274,7 +293,7 @@ export class RkModalImg extends RkComponent {
       source,
       index,
       style: imgStyle,
-      ...imgProps,
+      ...imgProps
     } = this.props;
 
     let {
@@ -329,8 +348,8 @@ export class RkModalImg extends RkComponent {
           animationType={animationType}
           transparent={transparent}
           visible={visible}
-          onOrientationChange={this._onOrientationChange.bind(this)}>
-          <View style={[modal, modalStyle]} onLayout={Platform.OS === 'ios' ? null : this._onOrientationChange.bind(this)}>
+               onOrientationChange={this._onOrientationChange.bind(this)}>
+          <View style={[modal, modalStyle]}>
             { Array.isArray(source) ? this._renderList(source, index, imgProps) : this._renderImage(basicSource, imgProps)}
             <Animated.View style={[this.styles.header, {opacity: this.state.opacity}]}>
               {renderHeader({closeImage, pageNumber, totalPages})}
