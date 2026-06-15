@@ -1,9 +1,12 @@
 {
-  "name": "react-native-ui-kitten",
-  "version": "3.0.0",
+  "name": "@react-native-ohos/react-native-ui-kitten",
+  "version": "3.0.0-0.61.1",
   "description": "React Native components",
   "author": "akveo",
   "homepage": "https://akveo.github.io/react-native-ui-kitten/",
+  "harmony": {
+    "alias": "react-native-ui-kitten"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -1,11 +1,11 @@
-> 模板版本：v0.4.0
+> 模板版本：v0.4.1
 
 # <center>react-native-ui-kitten</center>
 
 
 | 三方库名称                                | 三方库版本 | 发布信息 | 支持RN版本 | Autolink | 编译API版本 | 社区基线版本 | npm地址 |
 | ----------------------------------------- | ---------- | -------- | ---------- | -------- | ----------- | ------------ | ------- |
-| react-native-ui-kitten | ~ 1.0.0    |          | 0.61.*     | 否       | API12+      | 3.0.1        |         |
+| @react-native-ohos/react-native-ui-kitten | ~ 3.0.0-0.61.1 | [Github Releases](https://github.com/react-native-oh-library/react-ui-kitten) | 0.61.* | 否 | API12+ | 3.0.0 | [Npm Address](https://www.npmjs.com/package/@react-native-ohos/react-native-ui-kitten) |
 
 ## 简介
 
@@ -14,22 +14,21 @@ kitten是一个ui组件库，可以在应用和网页中使用，这样就可以
 
 ## 下载安装
 
+使用RNOH0.61框架的工程需要根据该文档配置，RNOH0.61框架指导文档：https://gitcode.com/CPF-RN/usage-docs/blob/br_rnoh0.61/zh-cn/rnoh0.61_usage.md
+
 进入到工程目录并输入以下命令：
 
 **npm**
 
 ```bash
-npm install react-native-ui-kitten
+npm install @react-native-ohos/react-native-ui-kitten
 ```
 
 **yarn**
 
 ```bash
-yarn add react-native-ui-kitten
+yarn add @react-native-ohos/react-native-ui-kitten
 ```
-
-## Link
-
 ## 约束与限制
 
 ### 兼容性
@@ -37,8 +36,6 @@ yarn add react-native-ui-kitten
 本文档内容基于以下版本验证通过：
 
 1. RNOH: 0.61; SDK: HarmonyOS 6.0.0 Release SDK; IDE: DevEco Studio 6.0.0.858; ROM: 6.0.0.112;
-
-### 权限要求
 
 ## 使用示例
 
@@ -104,10 +101,6 @@ const localStyles = RkStyleSheet.create({
 
 export default KittenTest;
 ```
-
-## 使用说明
-
-
 ## 接口说明
 
 > [!TIP] "Platform"列表示该属性在原三方库上支持的平台。
@@ -133,13 +126,9 @@ export default KittenTest;
 | RkTheme| RkThemeProps | yes  | all  | yes                 | 主题管理核心类，负责配置、切换、存储全局主题（颜色、字体、尺寸等） |
 | RkStyleSheet| RkStyleSheetProps | yes  | all  | yes                 | 主题化样式系统，基于 RN StyleSheet 扩展，支持根据主题动态生成样式|
 
-
 ## 遗留问题
 
-
 ## 其他
-
-无
 
 ## 目录结构
 
@@ -152,14 +141,6 @@ export default KittenTest;
 ├── README.md           # 英文安装使用方法  
 ├── README_zh.md   # 中文安装使用方法
 ````
-
-
-## 贡献代码
-
-使用过程中发现任何问题都可以提交 [Issue](https://github.com/bullptr/react-ui-kitten/issues)，当然，也非常欢迎提交  [PR](https://github.com/bullptr/react-ui-kitten/pulls) 。
-
 ## 开源协议
 
-本项目基于 [Apache License 2.0](https://github.com/bullptr/react-ui-kitten) ，请自由地享受和参与开源。
-
-
+本项目基于 [The MIT License (MIT)](https://github.com/bullptr/react-ui-kitten/blob/v3.0.0/LICENSE.txt) ，请自由地享受和参与开源。

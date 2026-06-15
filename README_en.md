@@ -1,35 +1,34 @@
-> 模板版本：v0.4.0
+> 模板版本：v0.4.1
 
 # <center>react-native-ui-kitten</center>
 
 
 | Name | Version | Release Information | Supported RN Version | Supported Autolink | Compile API Version | Community Baseline Version | npm Address     |
 | --------------| -------------- | ------------------------------ | ------------- | ------------- |------------------------ | ------------- | ------------- |
-| react-native-ui-kitten |  ~ 1.0.0    |  | 0.61.* | No | API12+ | 3.0.1 | | 
+| @react-native-ohos/react-native-ui-kitten | ~ 3.0.0-0.61.1 | [Github Releases](https://github.com/react-native-oh-library/react-ui-kitten) | 0.61.* | No | API12+ | 3.0.0 | [Npm Address](https://www.npmjs.com/package/@react-native-ohos/react-native-ui-kitten) | 
 
 ## Introduction
 
 kitten component for React Native.
 Kitten is a UI component library that can be used in applications and web pages, so that different devices can have the same UI components!
 
-## Installation
+## InstallationInstallation and Usage
+
+Projects using the RNOH0.61 framework need to be configured according to this document. RNOH0.61 Framework Guidance Document: https://gitcode.com/CPF-RN/usage-docs/blob/br_rnoh0.61/en/rnoh0.61_usage.md
 
 Go to the project directory and execute the following instruction:
 
 **npm**
 
 ```bash
-npm install react-native-ui-kitten
+npm install @react-native-ohos/react-native-ui-kitten
 ```
 
 **yarn**
 
 ```bash
-yarn add react-native-ui-kitten
+yarn add @react-native-ohos/react-native-ui-kitten
 ```
-
-## Link
-
 ## Constraints
 
 ### Compatibility
@@ -38,9 +37,7 @@ This document is verified based on the following versions:
 
 1. RNOH: 0.61; SDK: HarmonyOS 6.0.0 Release SDK; IDE: DevEco Studio 6.0.0.858; ROM: 6.0.0.112;
 
-### Permission Requirements
-
-## Example
+## Usage example
 
 The following code shows the basic use scenario of the repository:
 
@@ -63,18 +60,18 @@ function KittenTest() {
     <View>
       {/* RkText */}
       <View style={localStyles.section}>
-        <Text style={localStyles.label}>RkText 文本组件</Text>
+        <Text style={localStyles.label}>RkText Text Component</Text>
         <RkText style={localStyles.descText}>
-          这是一段主题化展示的文本内容
+          This is a text content presented in a thematic manner
         </RkText>
       </View>
       {/* RkButton */}
       <View style={localStyles.section}>
-        <Text style={localStyles.label}>RkButton 按钮</Text>
+        <Text style={localStyles.label}>RkButton button</Text>
         <RkButton
           onPress={handleClick}
         >
-          按钮
+          button
         </RkButton>
       </View>
 
@@ -104,11 +101,7 @@ const localStyles = RkStyleSheet.create({
 
 export default KittenTest;
 ```
-
-## How to Use
-
-
-## Available APIs
+## Interface Description
 
 > [!TIP] The **Platform** column indicates the platform where the properties are supported in the original third-party library.
 
@@ -148,11 +141,6 @@ export default KittenTest;
 ├── README.md           # English Installation and Usage Guide
 ├── README_zh.md   # Installation and Usage Guide (Chinese)
 ````
-## Contribution code
-
-Any issues found during use can be submitted as an [Issue](https://github.com/bullptr/react-ui-kitten/issues), and of course, [PR](https://github.com/bullptr/react-ui-kitten/pulls) submissions are also welcome.
-
 ## License
 
-The repository is based on [Apache License 2.0](https://github.com/bullptr/react-ui-kitten).
-
+The repository is based on [The MIT License (MIT)](https://github.com/bullptr/react-ui-kitten/blob/v3.0.0/LICENSE.txt).
