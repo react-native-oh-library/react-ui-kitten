@@ -339,10 +339,12 @@ export class RkModalImg extends RkComponent {
     let basicSource = Array.isArray(source) ? source[index] : source;
     return (
       <View>
-        <TouchableWithoutFeedback style={[imgContainer, imgContainerStyle]}
-                                  onPress={() => {this.needUpdateScroll = true; this.setState({visible: true});}}>
-          <Image source={basicSource} style={[img, imgStyle]} {...imgProps}/>
-        </TouchableWithoutFeedback>
+        <View style={[imgContainer, imgContainerStyle]}>
+          <TouchableWithoutFeedback
+            onPress={() => {this.needUpdateScroll = true; this.setState({visible: true});}}>
+            <Image source={basicSource} style={[img, imgStyle]} {...imgProps}/>
+          </TouchableWithoutFeedback>
+        </View>
         <Modal supportedOrientations={['portrait', 'landscape']}
           onRequestClose={closeImage}
           animationType={animationType}
