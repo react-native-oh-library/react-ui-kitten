@@ -11,13 +11,13 @@
     "fast-install-project": "cd ../ && npm i --legacy-peer-deps && npm pack && cd ./example/ && npm i --force",
     "fast:pkg": "npm run fast-install-project && npm run dev",
     "pack:pkg": "cd ../ && npm i -f && npm pack && cd ./example/",
-    "install:pkg": "npm uninstall react-native-ui-kitten && npm run pack:pkg && npm i react-native-ui-kitten@file:../react-native-ohos-react-native-ui-kitten-3.0.0-0.61.1.tgz"
+    "install:pkg": "npm uninstall react-native-ui-kitten && npm run pack:pkg && npm i react-native-ui-kitten@file:../react-native-ohos-react-native-ui-kitten-3.0.0-0.61.2.tgz"
   },
   "dependencies": {
     "@react-native-oh/react-native-harmony": "0.77.64",
     "@react-native-oh/react-native-harmony-61-interop": "file:./tgz_packages/react-native-oh-react-native-harmony-61-interop-0.0.0.tgz",
     "@react-native-oh/react-native-harmony-cli": "file:./tgz_packages/react-native-oh-react-native-harmony-cli-0.77.25.tgz",
-    "react-native-ui-kitten": "file:../react-native-ohos-react-native-ui-kitten-3.0.0-0.61.1.tgz",
+    "react-native-ui-kitten": "file:../react-native-ohos-react-native-ui-kitten-3.0.0-0.61.2.tgz",
     "@rnoh/testerino": "file:./tgz_packages/rnoh-testerino-0.0.12.tgz",
     "fbjs": "3.0.5",
     "react": "18.3.1",
