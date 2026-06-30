@@ -41,6 +41,11 @@ export class RkAvoidKeyboard extends RkComponent {
       this.keyboardWillShowListner = Keyboard.addListener('keyboardWillShow', this.onKeyboardWillShow);
       this.keyboardWillHideListner = Keyboard.addListener('keyboardWillHide', this.onKeyboardWillHide);
     }
+    else
+    {
+      this.keyboardDidShowListner = Keyboard.addListener('keyboardDidShow', this.onKeyboardWillShow);
+      this.keyboardDidHideListner = Keyboard.addListener('keyboardDidHide', this.onKeyboardWillHide);
+    }
   }
 
   UNSAFE_componentWillUnmount() {
@@ -48,19 +53,27 @@ export class RkAvoidKeyboard extends RkComponent {
       this.keyboardWillShowListner.remove();
       this.keyboardWillHideListner.remove();
     }
+    else
+    {
+      this.keyboardDidShowListner.remove();
+      this.keyboardDidHideListner.remove();
+    }
   }
 
   _onKeyboardWillShow(e) {
+    const keyboardHeight = Platform.OS === 'ios'
+      ? e.startCoordinates.height
+      : e.endCoordinates.height;
     Animated.timing(this.state.top, {
-      toValue: -(e.startCoordinates.height),
-      duration: e.duration,
+      toValue: -keyboardHeight,
+      duration: e.duration
     }).start();
   }
 
   _onKeyboardWillHide(e) {
     Animated.timing(this.state.top, {
       toValue: 0,
-      duration: e.duration,
+      duration: e.duration
     }).start();
   }
 
